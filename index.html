@@ -7,14 +7,25 @@
 
 <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-<script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
     const root = document.getElementById("root");
-    const h3 = React.createElement("h3", { id: "propertyArgs" }, "Hello, it's content argument");
-    const btn = React.createElement("button", {
-        onClick: () => console.log("clicked"),
-    }, "clickMe");
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.render(container, root);
+    const Title = () => (
+        <h3 id="title" onMouseEnter={() => console.log("Entered")}>It's title.</h3>
+    )
+    const Button = () => (
+        <button style={{ backgroundColor: "tomato", }} onClick={() => console.log("hi")}
+        >
+            Click Me
+        </button >
+    )
+    const Container = () => (
+        <div>
+            <Title></Title>
+            <Button></Button>
+        </div>
+    )
+    ReactDOM.render(<Container />, root);
 </script>
 <!-- REACT 의 핵심적 차이. HTML 에서 무언가를 만들고 js 로 다루는 것과 반대로, js 로 만들고 HTML 로 render 한다. -->
 
