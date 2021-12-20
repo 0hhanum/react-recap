@@ -10,30 +10,20 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    let counter = 0;
-    const countUp = () => {
-        counter = counter + 1;
-        render();
+    const App = () => {
+        const [counter, setCounter] = React.useState(0); // unpack
+        const onClick = () => {
+            setCounter(counter + 1);
+        }
+
+        return (
+            <div>
+                <h3>Total Clicks : {counter}</h3>
+                <button onClick={onClick}>Click Me</button >
+            </div>
+        )
     }
-    const render = () => { ReactDOM.render(<Container />, root); }
-    /*
-    const Title = () => (
-        <h3 id="title" onMouseEnter={() => console.log("Entered")}>It's title.</h3>
-    )
-    const Button = () => (
-        <button style={{ backgroundColor: "tomato", }} onClick={() => console.log("hi")}
-        >
-            Click Me
-        </button >
-    )
-    */
-    const Container = () => (
-        <div>
-            <h3>Total Clicks : {counter}</h3>
-            <button onClick={countUp}>Click Me</button >
-        </div>
-    )
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root);
 </script>
 <!-- REACT 의 핵심적 차이. HTML 에서 무언가를 만들고 js 로 다루는 것과 반대로, js 로 만들고 HTML 로 render 한다. -->
 
