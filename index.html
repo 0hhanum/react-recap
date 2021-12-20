@@ -10,6 +10,13 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
+    let counter = 0;
+    const countUp = () => {
+        counter = counter + 1;
+        render();
+    }
+    const render = () => { ReactDOM.render(<Container />, root); }
+    /*
     const Title = () => (
         <h3 id="title" onMouseEnter={() => console.log("Entered")}>It's title.</h3>
     )
@@ -19,10 +26,11 @@
             Click Me
         </button >
     )
+    */
     const Container = () => (
         <div>
-            <Title></Title>
-            <Button></Button>
+            <h3>Total Clicks : {counter}</h3>
+            <button onClick={countUp}>Click Me</button >
         </div>
     )
     ReactDOM.render(<Container />, root);
