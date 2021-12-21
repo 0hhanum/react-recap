@@ -12,22 +12,39 @@
     const root = document.getElementById("root");
     const App = () => {
         const [minutes, setMinutes] = React.useState("");
+        const [hours, setHours] = React.useState("");
+        const [flipped, setFlipped] = React.useState(false);
+
         const onChange = (event) => {
-            setMinutes(event.target.value);
+            if (flipped) {
+                setHours(event.target.value);
+                setMinutes(event.target.value * 60);
+            } else {
+                setMinutes(event.target.value);
+                setHours(event.target.value / 60);
+            }
+
         }
-        const reset = () => setMinutes("");
+        const reset = () => {
+            setMinutes("");
+            setHours("");
+        }
+        const onFlip = () => {
+            setFlipped((current) => !current);
+        }
         return (
             <div>
                 <div>
                     <h1>Converter</h1>
                     <label htmlFor="minutes">Minutes</label>
-                    <input onChange={onChange} value={minutes} id="minutes" placeholder="Minutes" type="number" />
+                    <input disabled={flipped === true} onChange={onChange} value={minutes} id="minutes" placeholder="Minutes" type="number" />
                 </div>
                 <div>
                     <label htmlFor="hours">Hours</label>
-                    <input disabled value={minutes / 60} id="hours" placeholder="Hours" type="number" />
+                    <input disabled={flipped === false} onChange={onChange} value={hours} id="hours" placeholder="Hours" type="number" />
                 </div>
                 <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
             </div>
         )
     }
