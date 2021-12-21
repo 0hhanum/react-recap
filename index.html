@@ -11,12 +11,16 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     const App = () => {
-
+        const [minutes, setMinutes] = React.useState();
+        const onChange = (event) => {
+            setMinutes(event.target.value);
+        }
         return (
             <div>
                 <h1>Converter</h1>
                 <label htmlFor="minutes">Minutes</label>
-                <input id="minutes" placeholder="Minutes" type="number" />
+                <input onChange={onChange} value={minutes} id="minutes" placeholder="Minutes" type="number" />
+                <h3>Convert {minutes} Min to Hour</h3>
                 <label htmlFor="hours">Hours</label>
                 <input id="hours" placeholder="Hours" type="number" />
             </div>
