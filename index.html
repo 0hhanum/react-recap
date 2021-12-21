@@ -11,17 +11,14 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     const App = () => {
-        const [counter, setCounter] = React.useState(0); // unpack
-        const onClick = () => {
-            // setCounter(counter + 1);
-            setCounter((current) => current + 1);
-            // setCounter 인자로 함수를 넣음. 그 함수에는 setCounter 이 현재 state 값을 인자로 넣어줌.
-        }
 
         return (
             <div>
-                <h3>Total Clicks : {counter}</h3>
-                <button onClick={onClick}>Click Me</button >
+                <h1>Converter</h1>
+                <label htmlFor="minutes">Minutes</label>
+                <input id="minutes" placeholder="Minutes" type="number" />
+                <label htmlFor="hours">Hours</label>
+                <input id="hours" placeholder="Hours" type="number" />
             </div>
         )
     }
