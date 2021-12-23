@@ -11,8 +11,42 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     const KmToMiles = () => {
+        const [kms, setKms] = React.useState("");
+        const [miles, setMiles] = React.useState("");
+        const [flipped, setFlipped] = React.useState(false);
+
+        const onChange = (event) => {
+            if (flipped) {
+                setMiles(event.target.value);
+                setKms(event.target.value * 1.609);
+            } else {
+                setKms(event.target.value);
+                setMiles(event.target.value * 0.6213);
+            }
+
+        }
+        const reset = () => {
+            setKms("");
+            setMiles("");
+        }
+        const onFlip = () => {
+            setFlipped((current) => !current);
+        }
         return (
-            <h1>Km to Miles Converter</h1>
+            <div>
+                <h1>Minutes to Hours Converter</h1>
+                <div>
+                    <label htmlFor="kms">Kms</label>
+                    <input disabled={flipped === true} onChange={onChange} value={kms} id="kms" placeholder="Kms" type="number" />
+                </div>
+                <div>
+                    <label htmlFor="miles">Miles</label>
+                    <input disabled={flipped === false} onChange={onChange} value={miles} id="miles" placeholder="Miles" type="number" />
+                </div>
+                <button onClick={reset}>Reset</button>
+                <button onClick={onFlip}>Flip</button>
+            </div>
+        )
         )
     }
     const MinToHour = () => {
