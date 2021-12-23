@@ -11,7 +11,9 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     const KmToMiles = () => {
-        return <h3> Distance converter </h3>
+        return (
+            <h1>Km to Miles Converter</h1>
+        )
     }
     const MinToHour = () => {
         const [minutes, setMinutes] = React.useState("");
@@ -53,10 +55,13 @@
     }
     const Selector = () => {
         const [toggle, setToggle] = React.useState(true);
+        const onClick = () => {
+            setToggle((current) => !current);
+        }
         if (toggle) {
             return (
                 <>
-                    <button>Change converter</button>
+                    <button onClick={onClick}>Change converter</button>
                     <MinToHour />
                 </>
             )
@@ -64,7 +69,7 @@
         else {
             return (
                 <>
-                    <button>Change converter</button>
+                    <button onClick={onClick}>Change converter</button>
                     <KmToMiles />
                 </>
             )
