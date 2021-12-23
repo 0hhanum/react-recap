@@ -34,7 +34,7 @@
         }
         return (
             <div>
-                <h1>Minutes to Hours Converter</h1>
+                <h1>Kms to Miles Converter</h1>
                 <div>
                     <label htmlFor="kms">Kms</label>
                     <input disabled={flipped === true} onChange={onChange} value={kms} id="kms" placeholder="Kms" type="number" />
@@ -46,7 +46,6 @@
                 <button onClick={reset}>Reset</button>
                 <button onClick={onFlip}>Flip</button>
             </div>
-        )
         )
     }
     const MinToHour = () => {
@@ -92,22 +91,12 @@
         const onClick = () => {
             setToggle((current) => !current);
         }
-        if (toggle) {
-            return (
-                <>
-                    <button onClick={onClick}>Change converter</button>
-                    <MinToHour />
-                </>
-            )
-        }
-        else {
-            return (
-                <>
-                    <button onClick={onClick}>Change converter</button>
-                    <KmToMiles />
-                </>
-            )
-        }
+        return (
+            <>
+                <button onClick={onClick}>Change Converter</button>
+                {toggle ? <MinToHour /> : <KmToMiles />}
+            </>
+        )
     }
     const App = () => {
         return (
