@@ -10,20 +10,28 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    const Btn = (props) => {
+    const Btn = ({ propText, onClick }) => {
         return <button style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 20
-        }}>{props.propText}</button>
+        }} onClick={onClick}>{propText}</button>
     }
     const App = () => {
+        const SAVE_CHANGES = "Save Changes";
+        const CONFIRM = "Confirm";
+
+        const [value, setValue] = React.useState(SAVE_CHANGES);
+        const onClick = () => {
+            console.log("hi");
+            value === SAVE_CHANGES ? setValue(CONFIRM) : setValue(SAVE_CHANGES);
+        }
         return (
             <div>
-                <Btn propText="Save Changes" />
-                <Btn propText="Confirm" />
+                <Btn onClick={onClick} propText={value} />
+                <Btn onClick={onClick} propText={value} />
             </div>
         )
     }
