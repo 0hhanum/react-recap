@@ -10,7 +10,10 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    const App = () => {
+    const KmToMiles = () => {
+        return <h3> Distance converter </h3>
+    }
+    const MinToHour = () => {
         const [minutes, setMinutes] = React.useState("");
         const [hours, setHours] = React.useState("");
         const [flipped, setFlipped] = React.useState(false);
@@ -34,8 +37,8 @@
         }
         return (
             <div>
+                <h1>Minutes to Hours Converter</h1>
                 <div>
-                    <h1>Converter</h1>
                     <label htmlFor="minutes">Minutes</label>
                     <input disabled={flipped === true} onChange={onChange} value={minutes} id="minutes" placeholder="Minutes" type="number" />
                 </div>
@@ -46,6 +49,32 @@
                 <button onClick={reset}>Reset</button>
                 <button onClick={onFlip}>Flip</button>
             </div>
+        )
+    }
+    const Selector = () => {
+        const [toggle, setToggle] = React.useState(true);
+        if (toggle) {
+            return (
+                <>
+                    <button>Change converter</button>
+                    <MinToHour />
+                </>
+            )
+        }
+        else {
+            return (
+                <>
+                    <button>Change converter</button>
+                    <KmToMiles />
+                </>
+            )
+        }
+    }
+    const App = () => {
+        return (
+            <>
+                <Selector />
+            </>
         )
     }
     ReactDOM.render(<App />, root);
