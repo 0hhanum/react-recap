@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="root"></div>
+</body>
+
+<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    const root = document.getElementById("root");
+    const Btn = (props) => {
+        return <button style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 20
+        }}>{props.propText}</button>
+    }
+    const App = () => {
+        return (
+            <div>
+                <Btn propText="Save Changes" />
+                <Btn propText="Confirm" />
+            </div>
+        )
+    }
+    ReactDOM.render(<App />, root);
+</script>
+<!-- REACT 의 핵심적 차이. HTML 에서 무언가를 만들고 js 로 다루는 것과 반대로, js 로 만들고 HTML 로 render 한다. -->
+
+</html>
