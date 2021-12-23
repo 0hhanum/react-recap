@@ -11,6 +11,7 @@
 <script type="text/babel">
     const root = document.getElementById("root");
     const Btn = ({ propText, onClick }) => {
+        console.log(propText + " rendered");
         return <button style={{
             backgroundColor: "tomato",
             color: "white",
@@ -19,19 +20,19 @@
             borderRadius: 20
         }} onClick={onClick}>{propText}</button>
     }
+    const MemorizedBtn = React.memo(Btn);
     const App = () => {
         const SAVE_CHANGES = "Save Changes";
-        const CONFIRM = "Confirm";
+        const REVERT = "Revert";
 
         const [value, setValue] = React.useState(SAVE_CHANGES);
         const onClick = () => {
-            console.log("hi");
-            value === SAVE_CHANGES ? setValue(CONFIRM) : setValue(SAVE_CHANGES);
+            value === SAVE_CHANGES ? setValue(REVERT) : setValue(SAVE_CHANGES);
         }
         return (
             <div>
-                <Btn onClick={onClick} propText={value} />
-                <Btn onClick={onClick} propText={value} />
+                <MemorizedBtn onClick={onClick} propText={value} />
+                <MemorizedBtn propText="Confirm" />
             </div>
         )
     }
