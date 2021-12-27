@@ -5,22 +5,28 @@
     <div id="root"></div>
 </body>
 
-<script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
 <script type="text/babel">
     const root = document.getElementById("root");
-    const Btn = ({ propText, onClick }) => {
+    const Btn = ({ propText, onClick, fontSize }) => {
         console.log(propText + " rendered");
         return <button style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
-            borderRadius: 20
+            borderRadius: 20,
+            fontSize
         }} onClick={onClick}>{propText}</button>
     }
     const MemorizedBtn = React.memo(Btn);
+    MemorizedBtn.propTypes = {
+        propText: PropTypes.string.isRequired,
+        fontSize: PropTypes.number,
+    }
     const App = () => {
         const SAVE_CHANGES = "Save Changes";
         const REVERT = "Revert";
@@ -31,7 +37,7 @@
         }
         return (
             <div>
-                <MemorizedBtn onClick={onClick} propText={value} />
+                <MemorizedBtn fontSize={18} onClick={onClick} propText={value} />
                 <MemorizedBtn propText="Confirm" />
             </div>
         )
