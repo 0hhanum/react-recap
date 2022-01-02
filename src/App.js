@@ -1,27 +1,24 @@
 import { useState, useEffect } from "react";
 
+function Hello() {
+  useEffect(() => {
+    console.log("Created");
+    return () => console.log("I run when Components destroyed")
+  }, [])
+  // if  deps is empty, it means function run only once when it rendered.
+  // The first arg of useEffect is function. And the function returned from first args(function) run when components destroyed.
+  return <h1>Hello!</h1>
+}
+
 function App() {
-  const [counter, setCounter] = useState(0);
-  const [keyword, setKeyword] = useState("");
-
-  const onClick = () => setCounter((current) => current + 1);
-  const onChange = (event) => {
-    setKeyword(event.target.value);
+  const [showing, setShowing] = useState(false);
+  const onClick = () => {
+    setShowing((current) => !current);
   }
-
-  useEffect(() => console.log("I run only once"), []);
-  // useEffect() makes code executed only once when Component rendered.
-  // It run when items in lists are changed.
-  useEffect(() => console.log("I run when 'keyword' changes"), [keyword]);
-  useEffect(() => console.log("I run when counter changes"), [counter]);
-  useEffect(() => console.log("I run when keyword & counter changes"), [keyword, counter]);
-  return (
-    <div>
-      <input value={keyword} onChange={onChange} type="text" placeholder="Search by.."></input>
-      <h1>{counter}</h1>
-      <button onClick={onClick}>Click Me</button>
-    </div>
-  );
+  return <div>
+    <button onClick={onClick}>{showing ? "Hide" : "Show"}</button>
+    {showing ? <Hello /> : null}
+  </div>
 }
 
 export default App;
