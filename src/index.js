@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CoinTracker from './CoinTracker';
+import Movie from './Movie';
 
 ReactDOM.render(
   <React.StrictMode>
-    <CoinTracker />
+    <Movie />
   </React.StrictMode>,
   document.getElementById('root')
 );
