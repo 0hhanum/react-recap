@@ -1,32 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useEffect } from "react/cjs/react.development";
+import Movie from "./Movie";
 
-function App() {
-  const [toDo, setToDo] = useState("");
-  const [toDos, setToDos] = useState([]);
-
-  const onChange = (event) => {
-    setToDo(event.target.value);
-  }
-  const onSubmit = (event) => {
-    event.preventDefault();
-    if (toDo === "") {
-      return;
+const App = () => {
+    const [loading, setLoading] = useState(true);
+    const [movies, setMovies] = useState([]);
+    const getMovies = async () => {
+        const response = await fetch("https://yts.mx/api/v2/list_movies.json?minimum_rating=9&sort_by=year");
+        const json = await response.json();
+        setMovies(json.data.movies);
+        setLoading(false);
     }
-    setToDos((current) => [toDo, ...toDos]); // unpack is JS
-    setToDo("");
-  }
-  return <div>
-    <h1>You have {toDos.length} things to do.</h1>
-    <form onSubmit={onSubmit}>
-      <input onChange={onChange} value={toDo} type="text" placeholder="Write thing to do" />
-      <button>Add</button>
-    </form>
-    <hr />
-    <ul>
-      {toDos.map((item, index) => <li key={index}>{item}</li>)}
-    </ul>
+    useEffect(() => {
+        getMovies();
+    }, []);
 
-  </div>
+    return <div>
+        {loading
+            ? "Loading ..."
+            : <div>
+                {movies.map((movie) =>
+                    <Movie key={movie.id} cover_image={movie.medium_cover_image} title={movie.title} summary={movie.summary} genres={movie.genres} />)}}
+            </div>}
+    </div>
 }
 
 export default App;
