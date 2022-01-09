@@ -5,7 +5,6 @@ import {
     Route
 } from "react-router-dom";
 
-import Movie from "./components/Movie";
 import Home from "./routes/Home";
 import Detail from "./routes/Detail";
 
@@ -13,7 +12,7 @@ import Detail from "./routes/Detail";
 const App = () => {
     return <Router>
         <Switch>
-            <Route path="/movie">
+            <Route path="/movie/:id">
                 <Detail />
             </Route>
             <Route path="/">
